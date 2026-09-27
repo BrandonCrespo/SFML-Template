@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "State.h"
 #include "Game.h"
+#include "Pipe.h"
 
 namespace ShowTime
 {
@@ -20,6 +21,8 @@ namespace ShowTime
 		GameDataRef data;
 
 		sf::Sprite* background;
+
+		Pipe* pipe;
 	};
 }
 
