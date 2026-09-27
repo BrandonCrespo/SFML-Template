@@ -10,7 +10,9 @@ namespace ShowTime
 		data(data),
 		background(nullptr),
 		pipe(nullptr),
-		land(nullptr)
+		land(nullptr),
+		bird(nullptr),
+		flash(nullptr)
 	{
 
 	}
@@ -25,6 +27,7 @@ namespace ShowTime
 		data->assets.LoadTexture("Bird Frame 2", BIRD_FRAME_2_FILEPATH);
 		data->assets.LoadTexture("Bird Frame 3", BIRD_FRAME_3_FILEPATH);
 		data->assets.LoadTexture("Bird Frame 4", BIRD_FRAME_4_FILEPATH);
+		data->assets.LoadTexture("Scoring Pipe", SCORING_PIPE_FILEPATH);
 
 		pipe = new Pipe(data);
 		land = new Land(data);
@@ -32,6 +35,8 @@ namespace ShowTime
 		flash = new Flash(data);
 
 		background = new sf::Sprite(data->assets.GetTexture("Game Background"));
+
+		score = 0;
 
 		gameState = GameStates::eReady;
 	}
@@ -75,6 +80,7 @@ namespace ShowTime
 				pipe->SpawnInvisiblePipe();
 				pipe->SpawnBottomPipe();
 				pipe->SpawnTopPipe();
+				pipe->SpawnScoringPipe();
 
 				clock.restart();
 			}
@@ -98,6 +104,23 @@ namespace ShowTime
 				if (collision.CheckSpriteCollision(bird->GetSprite(), 0.625f, *pipeSprites.at(i), 1.0f))
 				{
 					gameState = GameStates::eGameOver;
+				}
+			}
+
+			if (GameStates::ePlaying == gameState)
+			{
+				std::vector<sf::Sprite*>& scoringSprites = pipe->GetScoringSprites();
+
+				for (int i = 0; i < scoringSprites.size(); i++)
+				{
+					if (collision.CheckSpriteCollision(bird->GetSprite(), 0.625f, *scoringSprites.at(i), 1.0f))
+					{
+						score++;
+
+						std::cout << score << std::endl;
+
+						scoringSprites.erase(scoringSprites.begin() + i);
+					}
 				}
 			}
 		}

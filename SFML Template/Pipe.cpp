@@ -37,6 +37,15 @@ namespace ShowTime
 		pipeSprites.push_back(sprite);
 	}
 
+	void Pipe::SpawnScoringPipe()
+	{
+		sf::Sprite* sprite(new sf::Sprite(data->assets.GetTexture("Scoring Pipe")));
+
+		sprite->setPosition(sf::Vector2f(data->window.getSize().x,0));
+
+		scoringPipes.push_back(sprite);
+	}
+
 	void Pipe::MovePipes(float dt)
 	{
 		for (unsigned short int i = 0; i < pipeSprites.size(); i++)
@@ -50,6 +59,20 @@ namespace ShowTime
 				float movement = PIPE_MOVEMENT_SPEED * dt;
 
 				pipeSprites.at(i)->move(sf::Vector2f(-movement, 0));
+			}
+		}
+
+		for (unsigned short int i = 0; i < scoringPipes.size(); i++)
+		{
+			if (scoringPipes.at(i)->getPosition().x < 0 - scoringPipes.at(i)->getGlobalBounds().size.x)
+			{
+				scoringPipes.erase(scoringPipes.begin() + i);
+			}
+			else
+			{
+				float movement = PIPE_MOVEMENT_SPEED * dt;
+
+				scoringPipes.at(i)->move(sf::Vector2f(-movement, 0));
 			}
 		}
 	}
@@ -70,5 +93,10 @@ namespace ShowTime
 	const std::vector<sf::Sprite*>& Pipe::GetSprites() const
 	{
 		return pipeSprites;
+	}
+
+	std::vector<sf::Sprite*>& Pipe::GetScoringSprites()
+	{
+		return scoringPipes;
 	}
 }

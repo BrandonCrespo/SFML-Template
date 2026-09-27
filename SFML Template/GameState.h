@@ -35,6 +35,8 @@ namespace ShowTime
 		sf::Clock clock;
 
 		int gameState;
+
+		int score;
 	};
 }
 
