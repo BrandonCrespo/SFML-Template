@@ -7,6 +7,7 @@
 #include "Land.h"
 #include "Bird.h"
 #include "Collision.h"
+#include "Flash.h"
 
 namespace ShowTime
 {
@@ -29,6 +30,7 @@ namespace ShowTime
 		Land* land;
 		Bird* bird;
 		Collision collision;
+		Flash* flash;
 
 		sf::Clock clock;
 

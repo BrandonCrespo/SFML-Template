@@ -1,4 +1,5 @@
 #include "Bird.h"
+#include "Flash.h"
 
 namespace ShowTime
 {

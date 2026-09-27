@@ -29,6 +29,7 @@ namespace ShowTime
 		pipe = new Pipe(data);
 		land = new Land(data);
 		bird = new Bird(data);
+		flash = new Flash(data);
 
 		background = new sf::Sprite(data->assets.GetTexture("Game Background"));
 
@@ -100,6 +101,11 @@ namespace ShowTime
 				}
 			}
 		}
+
+		if (GameStates::eGameOver == gameState)
+		{
+			flash->Show(dt);
+		}
 	}
 
 	void GameState::Draw(float dt)
@@ -110,6 +116,7 @@ namespace ShowTime
 		pipe->DrawPipes();
 		land->DrawLand();
 		bird->Draw();
+		flash->Draw();
 
 		data->window.display();
 	}
