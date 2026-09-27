@@ -23,6 +23,8 @@ namespace ShowTime
 		sf::Sprite* background;
 
 		Pipe* pipe;
+
+		sf::Clock clock;
 	};
 }
 
