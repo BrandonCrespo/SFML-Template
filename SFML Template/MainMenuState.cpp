@@ -1,5 +1,6 @@
 #include <sstream>
 #include "MainMenuState.h"
+#include "GameState.h"
 #include "DEFINITIONS.h"
 
 #include <iostream>
@@ -7,8 +8,7 @@
 namespace ShowTime
 {
 	MainMenuState::MainMenuState(GameDataRef data) :
-		data(data),
-		background(nullptr)
+		data(data)
 	{
 
 	}
@@ -38,7 +38,7 @@ namespace ShowTime
 
 			if (data->input.IsSpriteClicked(*playButton, sf::Mouse::Button::Left, data->window))
 			{
-				std::cout << "Go to Game Screen" << std::endl;
+				data->machine.AddState(StateRef(new GameState(data)), true);
 			}
 		}
 	}
