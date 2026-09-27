@@ -33,6 +33,8 @@ namespace ShowTime
 		sf::Clock movementClock;
 
 		int birdState;
+
+		float rotation;
 	};
 }
 

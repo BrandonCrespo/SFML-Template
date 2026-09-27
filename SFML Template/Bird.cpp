@@ -15,6 +15,12 @@ namespace ShowTime
 
 		birdSprite->setPosition(sf::Vector2f((data->window.getSize().x / 4) - (birdSprite->getGlobalBounds().size.x / 2), (data->window.getSize().y / 2) - (birdSprite->getGlobalBounds().size.y / 2)));
 		birdState = BIRD_STATE_STILL;
+
+		sf::Vector2f origin = sf::Vector2f(birdSprite->getGlobalBounds().size.x / 2, birdSprite->getGlobalBounds().size.y / 2);
+
+		birdSprite->setOrigin(origin);
+
+		rotation = 0;
 	}
 
 	void Bird::Draw()
@@ -46,10 +52,28 @@ namespace ShowTime
 		if (BIRD_STATE_FALLING == birdState)
 		{
 			birdSprite->move(sf::Vector2f(0, GRAVITY * dt));
+
+			rotation += ROTATION_SPEED * dt;
+
+			if (rotation > ROTATION_CAP_DEGREES)
+			{
+				rotation = ROTATION_CAP_DEGREES;
+			}
+
+			birdSprite->setRotation(sf::degrees(rotation));
 		}
 		else if (BIRD_STATE_FLYING == birdState)
 		{
 			birdSprite->move(sf::Vector2f(0, -FLYING_SPEED * dt));
+
+			rotation -= ROTATION_SPEED * dt;
+
+			if (rotation < -ROTATION_CAP_DEGREES)
+			{
+				rotation = -ROTATION_CAP_DEGREES;
+			}
+
+			birdSprite->setRotation(sf::degrees(rotation));
 		}
 
 		if (movementClock.getElapsedTime().asSeconds() > FLYING_DURATION)
