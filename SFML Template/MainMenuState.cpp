@@ -8,7 +8,10 @@
 namespace ShowTime
 {
 	MainMenuState::MainMenuState(GameDataRef data) :
-		data(data)
+		data(data),
+		background(nullptr),
+		title(nullptr),
+		playButton(nullptr)
 	{
 
 	}

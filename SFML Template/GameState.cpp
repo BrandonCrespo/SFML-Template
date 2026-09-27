@@ -7,7 +7,8 @@
 namespace ShowTime
 {
 	GameState::GameState(GameDataRef data) :
-		data(data)
+		data(data),
+		background(nullptr)
 	{
 
 	}
