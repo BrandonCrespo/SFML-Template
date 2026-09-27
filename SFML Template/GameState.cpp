@@ -44,8 +44,7 @@ namespace ShowTime
 
 			if (data->input.IsSpriteClicked(*background, sf::Mouse::Button::Left, data->window))
 			{
-
-
+				bird->Tap();
 			}
 		}
 	}
@@ -67,6 +66,7 @@ namespace ShowTime
 		}
 
 		bird->Animate(dt);
+		bird->Update(dt);
 	}
 
 	void GameState::Draw(float dt)

@@ -16,6 +16,10 @@ namespace ShowTime
 
 		void Animate(float dt);
 
+		void Update(float dt);
+
+		void Tap();
+
 	private:
 		GameDataRef data;
 
@@ -25,6 +29,10 @@ namespace ShowTime
 		unsigned int animationIterator;
 
 		sf::Clock clock;
+
+		sf::Clock movementClock;
+
+		int birdState;
 	};
 }
 
