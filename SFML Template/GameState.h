@@ -6,6 +6,7 @@
 #include "Pipe.h"
 #include "Land.h"
 #include "Bird.h"
+#include "Collision.h"
 
 namespace ShowTime
 {
@@ -27,8 +28,11 @@ namespace ShowTime
 		Pipe* pipe;
 		Land* land;
 		Bird* bird;
+		Collision collision;
 
 		sf::Clock clock;
+
+		int gameState;
 	};
 }
 

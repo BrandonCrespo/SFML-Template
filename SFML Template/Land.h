@@ -14,6 +14,8 @@ namespace ShowTime
 		void MoveLand(float dt);
 		void DrawLand();
 
+		const std::vector<sf::Sprite*>& GetSprites() const;
+
 	private:
 		GameDataRef data;
 

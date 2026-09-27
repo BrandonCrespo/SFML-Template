@@ -20,6 +20,8 @@ namespace ShowTime
 
 		void Tap();
 
+		const sf::Sprite& GetSprite() const;
+
 	private:
 		GameDataRef data;
 

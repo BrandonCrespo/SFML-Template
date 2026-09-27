@@ -88,4 +88,9 @@ namespace ShowTime
 		movementClock.restart();
 		birdState = BIRD_STATE_FLYING;
 	}
+
+	const sf::Sprite& Bird::GetSprite() const
+	{
+		return *birdSprite;
+	}
 }

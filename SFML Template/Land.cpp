@@ -40,4 +40,9 @@ namespace ShowTime
 			data->window.draw(*landSprites.at(i));
 		}
 	}
+
+	const std::vector<sf::Sprite*>& Land::GetSprites() const
+	{
+		return landSprites;
+	}
 }
