@@ -8,7 +8,8 @@ namespace ShowTime
 {
 	GameState::GameState(GameDataRef data) :
 		data(data),
-		background(nullptr)
+		background(nullptr),
+		pipe(nullptr)
 	{
 
 	}
@@ -32,12 +33,20 @@ namespace ShowTime
 			{
 				data->window.close();
 			}
+
+			if (data->input.IsSpriteClicked(*background, sf::Mouse::Button::Left, data->window))
+			{
+				pipe->SpawnInvisiblePipe();
+				pipe->SpawnBottomPipe();
+				pipe->SpawnTopPipe();
+
+			}
 		}
 	}
 
 	void GameState::Update(float dt)
 	{
-
+		pipe->MovePipes(dt);
 	}
 
 	void GameState::Draw(float dt)
