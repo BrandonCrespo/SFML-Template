@@ -4,6 +4,7 @@
 #include "State.h"
 #include "Game.h"
 #include "Pipe.h"
+#include "Land.h"
 
 namespace ShowTime
 {
@@ -23,6 +24,7 @@ namespace ShowTime
 		sf::Sprite* background;
 
 		Pipe* pipe;
+		Land* land;
 
 		sf::Clock clock;
 	};

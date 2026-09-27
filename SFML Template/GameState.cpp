@@ -9,7 +9,8 @@ namespace ShowTime
 	GameState::GameState(GameDataRef data) :
 		data(data),
 		background(nullptr),
-		pipe(nullptr)
+		pipe(nullptr),
+		land(nullptr)
 	{
 
 	}
@@ -19,8 +20,10 @@ namespace ShowTime
 		data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 		data->assets.LoadTexture("Pipe Up", PIPE_UP_FILEPATH);
 		data->assets.LoadTexture("Pipe Down", PIPE_DOWN_FILEPATH);
+		data->assets.LoadTexture("Land", LAND_FILEPATH);
 
 		pipe = new Pipe(data);
+		land = new Land(data);
 
 		background = new sf::Sprite(data->assets.GetTexture("Game Background"));
 	}
@@ -45,6 +48,7 @@ namespace ShowTime
 	void GameState::Update(float dt)
 	{
 		pipe->MovePipes(dt);
+		land->MoveLand(dt);
 
 		if (clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY)
 		{
@@ -62,6 +66,7 @@ namespace ShowTime
 
 		data->window.draw(*background);
 		pipe->DrawPipes();
+		land->DrawLand();
 
 		data->window.display();
 	}
