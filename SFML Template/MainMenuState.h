@@ -6,10 +6,10 @@
 
 namespace ShowTime
 {
-	class SplashState : public State
+	class MainMenuState : public State
 	{
 	public:
-		SplashState(GameDataRef data);
+		MainMenuState(GameDataRef data);
 
 		void Init() override;
 		void HandleInput() override;
@@ -19,9 +19,9 @@ namespace ShowTime
 	private:
 		GameDataRef data;
 
-		sf::Clock clock;
-
 		sf::Sprite* background;
+		sf::Sprite* title;
+		sf::Sprite* playButton;
 	};
 }
 
