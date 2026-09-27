@@ -17,10 +17,15 @@ namespace ShowTime
 		void SpawnInvisiblePipe();
 		void MovePipes(float dt);
 		void DrawPipes();
+		void RandomizePipeOffset();
 
 	private:
 		GameDataRef data;
 		std::vector<sf::Sprite*> pipeSprites;
+
+		int landHeight;
+		int pipeSpawnYOffset;
+
 	};
 }
 

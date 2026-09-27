@@ -5,14 +5,15 @@ namespace ShowTime
 {
 	Pipe::Pipe(GameDataRef data) : data(data)
 	{
-
+		landHeight = data->assets.GetTexture("Land").getSize().y;
+		pipeSpawnYOffset = 0;
 	}
 
 	void Pipe::SpawnBottomPipe()
 	{
 		sf::Sprite* sprite(new sf::Sprite(data->assets.GetTexture("Pipe Up")));
 
-		sprite->setPosition(sf::Vector2f(data->window.getSize().x, data->window.getSize().y - sprite->getGlobalBounds().size.y));
+		sprite->setPosition(sf::Vector2f(data->window.getSize().x, data->window.getSize().y - sprite->getGlobalBounds().size.y - pipeSpawnYOffset));
 
 		pipeSprites.push_back(sprite);
 	}
@@ -21,7 +22,7 @@ namespace ShowTime
 	{
 		sf::Sprite* sprite(new sf::Sprite(data->assets.GetTexture("Pipe Down")));
 
-		sprite->setPosition(sf::Vector2f(data->window.getSize().x, 0));
+		sprite->setPosition(sf::Vector2f(data->window.getSize().x, -pipeSpawnYOffset));
 
 		pipeSprites.push_back(sprite);
 	}
@@ -51,8 +52,6 @@ namespace ShowTime
 				pipeSprites.at(i)->move(sf::Vector2f(-movement, 0));
 			}
 		}
-
-		std::cout << pipeSprites.size() << std::endl;
 	}
 
 	void Pipe::DrawPipes()
@@ -61,5 +60,10 @@ namespace ShowTime
 		{
 			data->window.draw(*pipeSprites.at(i));
 		}
+	}
+
+	void Pipe::RandomizePipeOffset()
+	{
+		pipeSpawnYOffset = rand() % (landHeight + 1);
 	}
 }
