@@ -7,12 +7,15 @@
 
 namespace ShowTime
 {
-	GameOverState::GameOverState(GameDataRef data) :
+	GameOverState::GameOverState(GameDataRef data, int score) :
 		data(data),
 		background(nullptr),
 		gameOverTitle(nullptr),
 		gameOverContainer(nullptr),
-		retryButton(nullptr)
+		retryButton(nullptr),
+		score(score),
+		scoreText(data->assets.GetFont("Flappy Font")),
+		highScoreText(data->assets.GetFont("Flappy Font"))
 	{
 
 	}
@@ -31,6 +34,18 @@ namespace ShowTime
 		gameOverContainer->setPosition(sf::Vector2f((data->window.getSize().x / 2) - (gameOverContainer->getGlobalBounds().size.x / 2), (data->window.getSize().y / 2) - (gameOverContainer->getGlobalBounds().size.y / 2)));
 		gameOverTitle->setPosition(sf::Vector2f((data->window.getSize().x / 2) - (gameOverTitle->getGlobalBounds().size.x / 2), gameOverContainer->getPosition().y - (gameOverTitle->getGlobalBounds().size.y * 1.2)));
 		retryButton->setPosition(sf::Vector2f((data->window.getSize().x / 2) - (retryButton->getGlobalBounds().size.x / 2), gameOverContainer->getPosition().y + gameOverContainer->getGlobalBounds().size.y + (retryButton->getGlobalBounds().size.y * 0.2)));
+		
+		scoreText.setString(std::to_string(score));
+		scoreText.setCharacterSize(56);
+		scoreText.setFillColor(sf::Color::White);
+		scoreText.setOrigin(sf::Vector2f(scoreText.getGlobalBounds().size.x / 2, scoreText.getGlobalBounds().size.y / 2));
+		scoreText.setPosition(sf::Vector2f(data->window.getSize().x / 10 * 7.25, data->window.getSize().y / 2.15));
+	
+		highScoreText.setString(std::to_string(highscore));
+		highScoreText.setCharacterSize(56);
+		highScoreText.setFillColor(sf::Color::White);
+		highScoreText.setOrigin(sf::Vector2f(highScoreText.getGlobalBounds().size.x / 2, highScoreText.getGlobalBounds().size.y / 2));
+		highScoreText.setPosition(sf::Vector2f(data->window.getSize().x / 10 * 7.25, data->window.getSize().y / 1.78));
 	}
 
 	void GameOverState::HandleInput()
@@ -60,6 +75,8 @@ namespace ShowTime
 		data->window.draw(*gameOverTitle);
 		data->window.draw(*gameOverContainer);
 		data->window.draw(*retryButton);
+		data->window.draw(scoreText);
+		data->window.draw(highScoreText);
 
 		data->window.display();
 	}

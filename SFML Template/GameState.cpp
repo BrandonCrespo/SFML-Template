@@ -139,7 +139,7 @@ namespace ShowTime
 
 			if (clock.getElapsedTime().asSeconds() > TIME_BEFORE_GAME_OVER_APPEARS)
 			{
-				data->machine.AddState(StateRef(new GameOverState(data)), true);
+				data->machine.AddState(StateRef(new GameOverState(data, score)), true);
 			}
 		}
 	}
