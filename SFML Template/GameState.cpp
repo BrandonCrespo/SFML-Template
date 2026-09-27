@@ -65,6 +65,8 @@ namespace ShowTime
 
 			clock.restart();
 		}
+
+		bird->Animate(dt);
 	}
 
 	void GameState::Draw(float dt)
