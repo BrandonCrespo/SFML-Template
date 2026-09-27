@@ -28,15 +28,18 @@ namespace ShowTime
 		data->assets.LoadTexture("Bird Frame 3", BIRD_FRAME_3_FILEPATH);
 		data->assets.LoadTexture("Bird Frame 4", BIRD_FRAME_4_FILEPATH);
 		data->assets.LoadTexture("Scoring Pipe", SCORING_PIPE_FILEPATH);
+		data->assets.LoadFont("Flappy Font", FLAPPY_FONT_FILEPATH);
 
 		pipe = new Pipe(data);
 		land = new Land(data);
 		bird = new Bird(data);
 		flash = new Flash(data);
+		hud = new HUD(data);
 
 		background = new sf::Sprite(data->assets.GetTexture("Game Background"));
 
 		score = 0;
+		hud->UpdateScore(score);
 
 		gameState = GameStates::eReady;
 	}
@@ -117,7 +120,7 @@ namespace ShowTime
 					{
 						score++;
 
-						std::cout << score << std::endl;
+						hud->UpdateScore(score);
 
 						scoringSprites.erase(scoringSprites.begin() + i);
 					}
@@ -140,6 +143,8 @@ namespace ShowTime
 		land->DrawLand();
 		bird->Draw();
 		flash->Draw();
+
+		hud->Draw();
 
 		data->window.display();
 	}
