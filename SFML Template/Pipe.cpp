@@ -29,9 +29,9 @@ namespace ShowTime
 
 	void Pipe::SpawnInvisiblePipe()
 	{
-		sf::Sprite* sprite(new sf::Sprite(data->assets.GetTexture("Pipe Up")));
+		sf::Sprite* sprite(new sf::Sprite(data->assets.GetTexture("Pipe Down")));
 
-		sprite->setPosition(sf::Vector2f(data->window.getSize().x, 0));
+		sprite->setPosition(sf::Vector2f(data->window.getSize().x, -pipeSpawnYOffset));
 		sprite->setColor(sf::Color(0, 0, 0, 0));
 
 		pipeSprites.push_back(sprite);
@@ -65,5 +65,10 @@ namespace ShowTime
 	void Pipe::RandomizePipeOffset()
 	{
 		pipeSpawnYOffset = rand() % (landHeight + 1);
+	}
+
+	const std::vector<sf::Sprite*>& Pipe::GetSprites() const
+	{
+		return pipeSprites;
 	}
 }

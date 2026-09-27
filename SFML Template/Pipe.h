@@ -19,6 +19,8 @@ namespace ShowTime
 		void DrawPipes();
 		void RandomizePipeOffset();
 
+		const std::vector<sf::Sprite*>& GetSprites() const;
+
 	private:
 		GameDataRef data;
 		std::vector<sf::Sprite*> pipeSprites;
