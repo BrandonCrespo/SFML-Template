@@ -1,6 +1,7 @@
 #include <sstream>
 #include "GameState.h"
 #include "DEFINITIONS.h"
+#include "GameOverState.h"
 
 #include <iostream>
 
@@ -97,6 +98,8 @@ namespace ShowTime
 				if (collision.CheckSpriteCollision(bird->GetSprite(), 0.625f, *landSprites.at(i), 1.0f))
 				{
 					gameState = GameStates::eGameOver;
+
+					clock.restart();
 				}
 			}
 
@@ -107,6 +110,8 @@ namespace ShowTime
 				if (collision.CheckSpriteCollision(bird->GetSprite(), 0.625f, *pipeSprites.at(i), 1.0f))
 				{
 					gameState = GameStates::eGameOver;
+
+					clock.restart();
 				}
 			}
 
@@ -131,6 +136,11 @@ namespace ShowTime
 		if (GameStates::eGameOver == gameState)
 		{
 			flash->Show(dt);
+
+			if (clock.getElapsedTime().asSeconds() > TIME_BEFORE_GAME_OVER_APPEARS)
+			{
+				data->machine.AddState(StateRef(new GameOverState(data)), true);
+			}
 		}
 	}
 

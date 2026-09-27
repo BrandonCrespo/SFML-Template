@@ -20,6 +20,10 @@ namespace ShowTime
 		GameDataRef data;
 
 		sf::Sprite* background;
+
+		sf::Sprite* gameOverTitle;
+		sf::Sprite* gameOverContainer;
+		sf::Sprite* retryButton;
 	};
 }
 
