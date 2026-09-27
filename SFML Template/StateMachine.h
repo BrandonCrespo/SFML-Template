@@ -5,7 +5,7 @@
 
 #include "State.h"
 
-namespace Sonar
+namespace ShowTime
 {
 	typedef std::unique_ptr<State> StateRef;
 

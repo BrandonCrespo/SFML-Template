@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
-namespace Sonar
+namespace ShowTime
 {
 	class AssetManager
 	{

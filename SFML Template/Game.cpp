@@ -1,11 +1,12 @@
 #include "Game.h"
+#include "SplashState.h"
 
-namespace Sonar
+namespace ShowTime
 {
-	Game::Game(int width, int height, std::string title)
+	Game::Game(unsigned int width, unsigned int height, std::string title)
 	{
 		data->window.create(sf::VideoMode({ width, height }), title, sf::Style::Close | sf::Style::Titlebar);
-
+		data->machine.AddState(StateRef(new SplashState(this->data)));
 		this->Run();
 	}
 

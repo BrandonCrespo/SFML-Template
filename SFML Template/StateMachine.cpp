@@ -1,6 +1,6 @@
 #include "StateMachine.h"
 
-namespace Sonar
+namespace ShowTime
 {
 	void StateMachine::AddState(StateRef newSate, bool isReplacing)
 	{

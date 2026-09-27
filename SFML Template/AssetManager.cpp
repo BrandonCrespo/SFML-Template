@@ -1,6 +1,7 @@
 #include "AssetManager.h"
+#include <iostream>
 
-namespace Sonar
+namespace ShowTime
 {
 	void AssetManager::LoadTexture(std::string name, std::string fileName)
 	{

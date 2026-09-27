@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-namespace Sonar
+namespace ShowTime
 {
 	class InputManager
 	{

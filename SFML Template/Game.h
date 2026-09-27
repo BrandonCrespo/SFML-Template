@@ -2,11 +2,12 @@
 
 #include <memory>
 #include <string>
+#include <SFML/Graphics.hpp>
 #include "StateMachine.h"
 #include "AssetManager.h"
 #include "InputManager.h"
 
-namespace Sonar
+namespace ShowTime
 {
 	struct GameData
 	{
@@ -21,7 +22,7 @@ namespace Sonar
 	class Game
 	{
 	public:
-		Game(int width, int height, std::string title);
+		Game(unsigned int width, unsigned int height, std::string title);
 
 	private:
 		const float dt = 1.0f / 60.0f;

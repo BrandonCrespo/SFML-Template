@@ -1,8 +1,9 @@
-#include <iostream>
 #include "Game.h"
+#include "DEFINITIONS.h"
+
 
 int main()
 {
-	Sonar::Game(800, 600, "Game Test");
+	ShowTime::Game(SCREEN_WIDTH, SCREEN_HEIGTH, "Flappy Bird");
 	return EXIT_SUCCESS;
 }
