@@ -21,9 +21,14 @@ namespace ShowTime
 		data->assets.LoadTexture("Pipe Up", PIPE_UP_FILEPATH);
 		data->assets.LoadTexture("Pipe Down", PIPE_DOWN_FILEPATH);
 		data->assets.LoadTexture("Land", LAND_FILEPATH);
+		data->assets.LoadTexture("Bird Frame 1", BIRD_FRAME_1_FILEPATH);
+		data->assets.LoadTexture("Bird Frame 2", BIRD_FRAME_2_FILEPATH);
+		data->assets.LoadTexture("Bird Frame 3", BIRD_FRAME_3_FILEPATH);
+		data->assets.LoadTexture("Bird Frame 4", BIRD_FRAME_4_FILEPATH);
 
 		pipe = new Pipe(data);
 		land = new Land(data);
+		bird = new Bird(data);
 
 		background = new sf::Sprite(data->assets.GetTexture("Game Background"));
 	}
@@ -69,6 +74,7 @@ namespace ShowTime
 		data->window.draw(*background);
 		pipe->DrawPipes();
 		land->DrawLand();
+		bird->Draw();
 
 		data->window.display();
 	}

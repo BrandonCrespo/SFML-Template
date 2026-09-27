@@ -1,10 +1,15 @@
 #include "Game.h"
 #include "SplashState.h"
 
+#include <stdlib.h>
+#include <time.h>
+
 namespace ShowTime
 {
 	Game::Game(unsigned int width, unsigned int height, std::string title)
 	{
+		srand(time(NULL));
+
 		data->window.create(sf::VideoMode({ width, height }), title, sf::Style::Close | sf::Style::Titlebar);
 		data->machine.AddState(StateRef(new SplashState(this->data)));
 		this->Run();

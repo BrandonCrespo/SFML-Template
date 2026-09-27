@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Pipe.h"
 #include "Land.h"
+#include "Bird.h"
 
 namespace ShowTime
 {
@@ -25,6 +26,7 @@ namespace ShowTime
 
 		Pipe* pipe;
 		Land* land;
+		Bird* bird;
 
 		sf::Clock clock;
 	};
