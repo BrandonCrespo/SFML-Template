@@ -4,6 +4,7 @@
 #include "GameState.h"
 
 #include <iostream>
+#include <fstream>
 
 namespace ShowTime
 {
@@ -22,9 +23,39 @@ namespace ShowTime
 
 	void GameOverState::Init()
 	{
+		std::ifstream readFile;
+		readFile.open(HIGHSCORE_FILEPATH);
+
+		if (readFile.is_open())
+		{
+			while (!readFile.eof())
+			{
+				readFile >> highscore;
+			}
+		}
+
+		readFile.close();
+
+		std::ofstream writeFile(HIGHSCORE_FILEPATH);
+
+		if (writeFile.is_open())
+		{
+			if (score > highscore)
+			{
+				highscore = score;
+			}
+			writeFile << highscore;
+		}
+		writeFile.close();
+
 		data->assets.LoadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
 		data->assets.LoadTexture("Game Over Title", GAME_OVER_TITLE_FILEPATH);
 		data->assets.LoadTexture("Game Over Body", GAME_OVER_BODY_FILEPATH);
+
+		data->assets.LoadTexture("Bronze Medal", BRONZE_MEDAL_FILEPATH);
+		data->assets.LoadTexture("Silver Medal", SILVER_MEDAL_FILEPATH);
+		data->assets.LoadTexture("Gold Medal", GOLD_MEDAL_FILEPATH);
+		data->assets.LoadTexture("Platinum Medal", PLATINUM_MEDAL_FILEPATH);
 
 		background = new sf::Sprite(data->assets.GetTexture("Game Over Background"));
 		gameOverTitle = new sf::Sprite(data->assets.GetTexture("Game Over Title"));
@@ -46,6 +77,30 @@ namespace ShowTime
 		highScoreText.setFillColor(sf::Color::White);
 		highScoreText.setOrigin(sf::Vector2f(highScoreText.getGlobalBounds().size.x / 2, highScoreText.getGlobalBounds().size.y / 2));
 		highScoreText.setPosition(sf::Vector2f(data->window.getSize().x / 10 * 7.25, data->window.getSize().y / 1.78));
+	
+		if (score >= PLATINUM_MEDAL_SCORE)
+		{
+			medal = new sf::Sprite(data->assets.GetTexture("Platinum Medal"));
+		}
+		else if (score >= GOLD_MEDAL_SCORE)
+		{
+			medal = new sf::Sprite(data->assets.GetTexture("Gold Medal"));
+		}
+		else if (score >= SILVER_MEDAL_SCORE)
+		{
+			medal = new sf::Sprite(data->assets.GetTexture("Silver Medal"));
+		}
+		else if (score >= BRONZE_MEDAL_SCORE)
+		{
+			medal = new sf::Sprite(data->assets.GetTexture("Bronze Medal"));
+		}
+		else
+		{
+			medal = new sf::Sprite(data->assets.GetTexture("Bronze Medal"));
+			medal->setColor(sf::Color(0, 0, 0, 0));
+		}
+
+		medal->setPosition(sf::Vector2f(175, 465));
 	}
 
 	void GameOverState::HandleInput()
@@ -77,6 +132,8 @@ namespace ShowTime
 		data->window.draw(*retryButton);
 		data->window.draw(scoreText);
 		data->window.draw(highScoreText);
+
+		data->window.draw(*medal);
 
 		data->window.display();
 	}

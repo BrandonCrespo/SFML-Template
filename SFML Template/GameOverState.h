@@ -24,6 +24,7 @@ namespace ShowTime
 		sf::Sprite* gameOverTitle;
 		sf::Sprite* gameOverContainer;
 		sf::Sprite* retryButton;
+		sf::Sprite* medal;
 
 		sf::Text scoreText;
 		sf::Text highScoreText;
